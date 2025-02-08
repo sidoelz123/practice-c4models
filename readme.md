@@ -4,9 +4,9 @@ A practice project that is useful for understanding how to create C4 models with
 ## features
 
 - [x] C1 Context
-- [v] C2 Containers
-- [v] C3 Components
-- [] C4 Code
+- [x] C2 Containers
+- [x] C3 Components
+- [ ] C4 Code
 
 ## run project
 
