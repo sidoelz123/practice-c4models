@@ -3,7 +3,8 @@
   "description" : "This is an workspace to challenge pre-ip refactory.",
   "documentation" : { },
   "id" : 1,
-  "lastModifiedDate" : "2025-02-08T14:18:48Z",
+  "lastModifiedAgent" : "structurizr-ui",
+  "lastModifiedDate" : "2025-02-08T20:18:45Z",
   "model" : {
     "people" : [ {
       "description" : "A super admin of the Medpoint Mediverse",
@@ -805,7 +806,7 @@
       } ]
     }, {
       "automaticLayout" : {
-        "applied" : false,
+        "applied" : true,
         "edgeSeparation" : 0,
         "implementation" : "Graphviz",
         "nodeSeparation" : 300,
@@ -815,42 +816,46 @@
       },
       "containerId" : "6",
       "description" : "The component diagram for the Web CMS Application.",
+      "dimensions" : {
+        "height" : 4411,
+        "width" : 2390
+      },
       "elements" : [ {
         "id" : "7",
-        "x" : 0,
-        "y" : 0
+        "x" : 219,
+        "y" : 1971
       }, {
         "id" : "8",
-        "x" : 0,
-        "y" : 0
+        "x" : 969,
+        "y" : 1971
       }, {
         "id" : "9",
-        "x" : 0,
-        "y" : 0
+        "x" : 1719,
+        "y" : 171
       }, {
         "id" : "10",
-        "x" : 0,
-        "y" : 0
+        "x" : 1719,
+        "y" : 3771
       }, {
         "id" : "11",
-        "x" : 0,
-        "y" : 0
+        "x" : 1719,
+        "y" : 3171
       }, {
         "id" : "12",
-        "x" : 0,
-        "y" : 0
+        "x" : 1719,
+        "y" : 2571
       }, {
         "id" : "13",
-        "x" : 0,
-        "y" : 0
+        "x" : 1719,
+        "y" : 1971
       }, {
         "id" : "14",
-        "x" : 0,
-        "y" : 0
+        "x" : 1719,
+        "y" : 1371
       }, {
         "id" : "15",
-        "x" : 0,
-        "y" : 0
+        "x" : 1719,
+        "y" : 771
       } ],
       "externalContainerBoundariesVisible" : false,
       "key" : "C3-Components-webCMS",
@@ -858,9 +863,17 @@
       "relationships" : [ {
         "id" : "74"
       }, {
-        "id" : "75"
+        "id" : "75",
+        "vertices" : [ {
+          "x" : 1719,
+          "y" : 621
+        } ]
       }, {
-        "id" : "76"
+        "id" : "76",
+        "vertices" : [ {
+          "x" : 1719,
+          "y" : 3621
+        } ]
       }, {
         "id" : "77"
       }, {
@@ -868,9 +881,17 @@
       }, {
         "id" : "79"
       }, {
-        "id" : "80"
+        "id" : "80",
+        "vertices" : [ {
+          "x" : 1719,
+          "y" : 3021
+        } ]
       }, {
-        "id" : "81"
+        "id" : "81",
+        "vertices" : [ {
+          "x" : 1719,
+          "y" : 1221
+        } ]
       } ]
     }, {
       "automaticLayout" : {
@@ -945,6 +966,7 @@
     "configuration" : {
       "branding" : { },
       "lastSavedView" : "C3-Components-webCMS",
+      "metadataSymbols" : "SquareBrackets",
       "styles" : {
         "elements" : [ {
           "background" : "#08427b",
@@ -1111,6 +1133,7 @@
     } ],
     "imageViews" : [ {
       "content" : "https://raw.githubusercontent.com/structurizr/examples/main/dsl/big-bank-plc/internet-banking-system/mainframe-banking-system-facade.png",
+      "contentType" : "image/png",
       "elementId" : "29",
       "key" : "authService",
       "order" : 4,

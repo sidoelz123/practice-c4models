@@ -1,5 +1,5 @@
 ## Medpoint mediverse
-tujuan Medpoint mediverse system adalah 
+tujuan dari project ini adalah 
 - pengguna bisa melakukan berbagai jenis reservasi medis online, termasuk konsultasi dokter, tes laboratorium, tindakan medis, dan vaksinasi. 
 - memudahkan pengguna dengan proses reservasi online saat menjalani tindakan medis. 
 - mempunyai fitur pencarian dokter dan fasilitas kesehatan (faskes), penjadwalan janji temu dengan dokter atau tindakan medis. 
