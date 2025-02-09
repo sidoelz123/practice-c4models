@@ -3,7 +3,7 @@ A practice project that is useful for understanding how to create C4 models with
 
 ## features
 
-- [v] C1 Context
+- [x] C1 Context
 - [v] C2 Containers
 - [v] C3 Components
 - [] C4 Code
