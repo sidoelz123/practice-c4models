@@ -1,5 +1,4 @@
 workspace "Medpoint Mediverse System" "This is an workspace to challenge pre-ip refactory." {
-
     model {
         superAdmin = person "Super Admin" "A super admin of the Medpoint Mediverse"
         admin = person "Admin" "A admin of the Medpoint Mediverse"
@@ -8,7 +7,7 @@ workspace "Medpoint Mediverse System" "This is an workspace to challenge pre-ip 
 
 
         medpointMediverseSystem = softwaresystem "Medpoint Mediverse System" "Allow persons to make various types of online medical reservations, including doctor consultations, lab tests, medical procedures, and vaccinations." {
-            webCMS = container "Web CMS Application" "Provides all of the Internet banking functionality to customers via their web browser." "TypeScript and Reactjs" "Web Browser"{
+            webCMS = container "Web CMS Application" "Provides all of the medpoint mediverse system functionality to super admin and admin via their web browser." "TypeScript and Reactjs" "Web Browser"{
                 signinPage = component "Sign In Page"
                 homePage = component "Home Page"
                 profilePage = component "Profile Page"
@@ -20,18 +19,68 @@ workspace "Medpoint Mediverse System" "This is an workspace to challenge pre-ip 
                 notificationPage = component "Notification Page"
 
             }
-            mobileApp = container "Mobile App" "Provides a limited subset of the Internet banking functionality to customers via their mobile device." "Dart and Flutter" "Mobile App" {
-                signinScreen = component "Sign In Screen"
-                signupScreen = component "Sign Up Screen
-                homeScreen = component "Home Screen"
-                profileScreen = component "Profile Screen"
-                notificationScreen = component "Notification Screen"
-                reservationScreen = component "Reservation Screen"
-                paymentScreen = component "Payment Screen"
-                consultScreen = component "Consultation Screen"
-                prescriptionScreen = component "Prescription Screen"
+            mobileApp = container "Mobile App" "Provides a limited subset of the medpoint mediverse system functionality to user and doctor via their mobile device." "Dart and Flutter" "Mobile App" {
+                group "doctor actor"{
+                    doctorHomeScreen = component "doctor Home screen" {
+                        tags "Mobile App"
+                    }
+                    ConsultScreen = component "Doctor Consultation Screen" {
+                        description "test deskripsi"
+                        tags "Mobile App"
+                    }
+                    PrescriptionScreen = component "Doctor Prescription Screen" {
+                        description "test deskripsi"
+                        tags "Mobile App"
+                    }
+                    doctorProfileScreen = component "Doctor Profile Screen" {
+                        description "test deskripsi"
+                        tags "Mobile App"
+                    }
+                    doctorNotificationScreen = component "Doctor Notification Screen" {
+                        description "test deskripsi"
+                        tags "Mobile App"
+                    }
+                    doctorReservationScreen = component "Doctor Reservation Screen" {
+                        description "test deskripsi"
+                        tags "Mobile App"
+                    }
+                }
+                group "user actor"{
+                    homeScreen = component "Home Screen" {
+                        description "test deskripsi"
+                        tags "Mobile App"
+                    } 
+                    profileScreen = component "Profile Screen" {
+                        description "test deskripsi"
+                        tags "Mobile App"
+                    }
+                    notificationScreen = component "Notification Screen" {
+                        description "test deskripsi"
+                        tags "Mobile App"
+                    }
+                    reservationScreen = component "Reservation Screen" {
+                        description "test deskripsi"
+                        tags "Mobile App"
+                    }
+                    paymentScreen = component "Payment Screen" {
+                        description "test deskripsi"
+                        tags "Mobile App"
+                    }
+                }
+                splashScreen = component "Splash Screen" {
+                    description "test deskripsi"
+                    tags "Mobile App"
+                }
+                signinScreen = component "Sign In Screen" {
+                    description "test deskripsi"
+                    tags "Mobile App"
+                }
+                signupScreen = component "Sign Up Screen" {
+                    description "test deskripsi"
+                    tags "Mobile App"
+                }
             }
-            apiApplication = container "API Application" "Provides Internet banking functionality via a JSON/HTTPS API." "Go and Raiden Framework" {
+            apiApplication = container "API Application" "Provides medpoint mediverse system functionality via a JSON/HTTPS API." "Go and Raiden Framework" {
                 signinController = component "Sign In Controller" "Allows users to sign in to the Medpoint Mediverse System." "Raiden Rest Controller"
                 signupController = component "Sign Up Controller" "Allows user to sign up to the Medpoint Mediverse System." "Raiden Rest Controller"
                 authService = component "auth Service " "Handle user authentication and authorization" 
@@ -44,8 +93,11 @@ workspace "Medpoint Mediverse System" "This is an workspace to challenge pre-ip 
                 notificationService = component "Notification Service" "Send and manage notifications."
 
             }
-            database = container "Database" "Stores user registration information, hashed authentication credentials, access logs, etc." "Postgresql Database Schema" "Database"
         }
+        database = softwaresystem "Database System" "Database using Postgresql for Stores user registration information, hashed authentication credentials, access logs, etc." "Existing System"{
+            tags "database"
+        }
+        paymentGateway = softwaresystem "Payment Gateway System" "External payment system is a system used for payment transactions online" "Existing System"
         
 
         # relationships software systems
@@ -59,7 +111,6 @@ workspace "Medpoint Mediverse System" "This is an workspace to challenge pre-ip 
         admin -> webCMS "Manage master data, schedules, reservation slots, and payments"
         doctor -> mobileApp "Provide reservation slots, approve reservations, provide consultations and prescribe medication"
         user -> mobileApp "Make reservations, cancel, and make payments"
-        
 
         # relationships to/from API Application components
         webCMS -> userManagement "Makes API calls to" "JSON/HTTPS"
@@ -87,6 +138,8 @@ workspace "Medpoint Mediverse System" "This is an workspace to challenge pre-ip 
         reservationService -> database "Reads from and writes to" "SQL/TCP"
         facilityManagement -> database "Reads from and writes to" "SQL/TCP"
         prescriptionService -> database "Reads from and writes to" "SQL/TCP"
+        paymentService -> paymentGateway "create transactions and receive token"
+        paymentGateway -> paymentService "send status transactions via webhook"
         paymentService -> database "Reads from and writes to" "SQL/TCP"
         notificationService -> database "Reads from and writes to" "SQL/TCP"
 
@@ -103,14 +156,26 @@ workspace "Medpoint Mediverse System" "This is an workspace to challenge pre-ip 
 
 
         # relationships to/from Mobile Application components
+        doctor -> splashScreen
+        user -> splashScreen
+        splashScreen -> signinScreen
+        splashScreen -> signupScreen
+        signinScreen -> doctorHomeScreen
         signinScreen -> homeScreen
-        signupScreen -> homeScreen
+        signupScreen -> signinScreen
+        splashScreen -> homeScreen
+        splashScreen -> doctorHomeScreen
         homeScreen -> profileScreen
         homeScreen -> notificationScreen
         homeScreen -> reservationScreen
-        homeScreen -> consultScreen
-        consultScreen -> prescriptionScreen
         reservationScreen -> paymentScreen
+
+        doctorHomeScreen -> consultScreen
+        doctorHomeScreen -> doctorProfileScreen
+        doctorHomeScreen -> doctorNotificationScreen
+        doctorHomeScreen -> doctorReservationScreen
+        consultScreen -> prescriptionScreen
+
     }
 
         
@@ -154,17 +219,20 @@ workspace "Medpoint Mediverse System" "This is an workspace to challenge pre-ip 
             description "The component diagram for the mobile Application."
         }
 
-        dynamic apiApplication "SignIn" "Summarises how the sign in feature works in the single-page application." {
-            
-            webCMS -> signinController "Submits credentials to"
+        dynamic apiApplication "Auth" "Summarises how the sign in feature works in the mobile application." {
+            user -> mobileApp "user signin"
+            mobileApp -> signinController "Submits credentials to"
             signinController -> authService "validate credentials role"
             authService -> database "select * from users where username = ?"
             database -> authService "Returns user data to"
             authService -> signinController "Returns true if the hashed password matches"
-            signinController -> webCMS "Sends back an authentication token to"
+            signinController -> mobileApp "Sends back an authentication token to"
+         
             autoLayout
-            description "Summarises how the sign in feature works in the single-page application."
+            description "Summarises how the sign in feature works in the mobile application."
         }
+
+
 
         
 
@@ -191,7 +259,7 @@ workspace "Medpoint Mediverse System" "This is an workspace to challenge pre-ip 
                 shape WebBrowser
             }
             element "Mobile App" {
-                shape MobileDeviceLandscape
+                shape MobileDevicePortrait
             }
             element "Database" {
                 shape Cylinder
