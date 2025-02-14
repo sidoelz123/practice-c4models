@@ -17,8 +17,8 @@ workspace "Medpoint Mediverse System" "This is an workspace to challenge pre-ip 
                 masterDataManagement = component "Master Data Management Page"
                 doctorManagementPage = component "Doctor Management Page"
                 notificationPage = component "Notification Page"
-
             }
+            
             mobileApp = container "Mobile App" "Provides a limited subset of the medpoint mediverse system functionality to user and doctor via their mobile device." "Dart and Flutter" "Mobile App" {
                 group "doctor actor"{
                     doctorHomeScreen = component "doctor Home screen" {
